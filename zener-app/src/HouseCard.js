@@ -1,9 +1,10 @@
 import React from "react"
 
-function HouseCard(){
+function HouseCard(props){
     return(
         <div>
-            <h1> From House Card App</h1>
+            <h1> The House Card value is {props.value}</h1>
+            
         </div>
     );
 }
