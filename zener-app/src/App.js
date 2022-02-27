@@ -22,7 +22,6 @@ function App() {
 
   return (
     <div className="App">
-      <h1>From the App</h1>
       <HouseCard value = {houseCard.value}/>
       <RiverCard />
     </div>

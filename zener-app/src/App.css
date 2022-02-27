@@ -36,3 +36,17 @@
     transform: rotate(360deg);
   }
 }
+
+.house-card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+}
+
+.house-card {
+  height: 500px;
+  width: auto;
+  border: black;
+  border-style: solid;
+}
