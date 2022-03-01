@@ -24,33 +24,30 @@ function App() {
 
     // Below creates a variable called houseCardArr allocation the state of houseCard to it
     // Then an empty array called newArray
+    // Push the value of the houseCard to newArray so the one of the River cards will be the same as the house card.
     // Using a for loop to create a variable called X and allocatinig it a random number
 
     const houseCardArr = [houseCard]
-    console.table(houseCardArr)
-
     const newArray =[]
+    newArray.push({value: houseCardArr[0].value})
+    console.table(newArray)
+
     for( let i = 0; i < 3; i ++){
        let x = randomNum()
        
       // conflictValue checks whether newArray value property are the same as x
       // if they match it returns true
       const conflictValue = newArray.some(num => num.value === x)
-      console.log("Conflict Value is",conflictValue)
-
-
-      // conflictHouseCardValue checks whether houseCardArr value property are the same as x
-      // if they match it returns true
-      const conflictHouseCardValue = houseCardArr.some(num => num.value === x)
-      console.log("Conflict House Card Value is", conflictHouseCardValue)
+      
 
       // BELOW IF STATEMENT IS THE ONE WE WANT
-      //Below if statement checks to see if conflictValue or conflictHouseCardValue is true
+      //Below if statement checks to see if conflictValue is true
       //If true then it re-sets the value of i to reloop the above for loop from the point it was true
       //If false then it pushes the value of x to the newArray array
 
-      if(conflictValue === true || conflictHouseCardValue === true){
-        if(i > 0){
+      if(conflictValue === true){
+        console.log("Conflict Value is",conflictValue, "Value of x is", x)
+        if(i >= 0){
           i = i-1;
         }else{
           i = 0;
@@ -59,7 +56,6 @@ function App() {
         newArray.push({value: x})
       } 
     }
-    newArray.push({value: houseCardArr[0].value})
     console.table(newArray)
   }
   
