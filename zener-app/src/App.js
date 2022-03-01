@@ -7,7 +7,7 @@ import RiverCard from './RiverCard';
 
 function App() {
   const [houseCard, setHouseCard] = React.useState(newHouseCard())
-  const [riverCard, setRiverCard] = React.useState(newHouseCard())
+  const [riverCard, setRiverCard] = React.useState()
 
   function randomNum(){
     return Math.floor((Math.random() * 8) + 1)
@@ -22,47 +22,45 @@ function App() {
 
   function newRiverCard(){
 
-
     // Below creates a variable called houseCardArr allocation the state of houseCard to it
     // Then an empty array called newArray
     // Using a for loop to create a variable called X and allocatinig it a random number
-    // if statement checks to see whether it matches the value of houseCard it does it prints a statement.
-    // if it doesn't it pushes the valye to newArray array. 
 
     const houseCardArr = [houseCard]
-    // console.table(houseCardArr)
+    console.table(houseCardArr)
+
     const newArray =[]
     for( let i = 0; i < 3; i ++){
        let x = randomNum()
-      
-      // if (x === houseCardArr[0].value){
-      //   console.log("Matched House Card ")
-      // } else{
-      //   newArray.push({value: x})
-      // }
+       
+      // conflictValue checks whether newArray value property are the same as x
+      // if they match it returns true
+      const conflictValue = newArray.some(num => num.value === x)
+      console.log("Conflict Value is",conflictValue)
+
+
+      // conflictHouseCardValue checks whether houseCardArr value property are the same as x
+      // if they match it returns true
+      const conflictHouseCardValue = houseCardArr.some(num => num.value === x)
+      console.log("Conflict House Card Value is", conflictHouseCardValue)
 
       // BELOW IF STATEMENT IS THE ONE WE WANT
-      //Below if statement says if newArray includes value of x it console.log
-      // I want it perform the loop again
-      if(newArray.includes(x)){
-        console.log("Value X matches newArray")
+      //Below if statement checks to see if conflictValue or conflictHouseCardValue is true
+      //If true then it re-sets the value of i to reloop the above for loop from the point it was true
+      //If false then it pushes the value of x to the newArray array
+
+      if(conflictValue === true || conflictHouseCardValue === true){
+        if(i > 0){
+          i = i-1;
+        }else{
+          i = 0;
+        }
       }else{
-        newArray.push(x)
+        newArray.push({value: x})
       } 
     }
+    newArray.push({value: houseCardArr[0].value})
     console.table(newArray)
-    
-      // Below if statement needs to check to see if the value from the for loop
-      // matches the exisiting value's in newArray
-      // At the moment I can't get it to carry on looping if they do match. 
-      
-      // if([i] === houseCardArr[0].value){
-      //   console.log("There the same")
-      // }else{
-      //   houseCardArr.push({value: randomNum()})
-      // }
-    
-    
   }
   
   
