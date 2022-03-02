@@ -1,13 +1,13 @@
-import logo from './logo.svg';
 import './App.css';
 import React from "react"
 import HouseCard from './HouseCard';
 import RiverCard from './RiverCard';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function App() {
   const [houseCard, setHouseCard] = React.useState(newHouseCard())
-  const [riverCard, setRiverCard] = React.useState()
+  const [riverCard, setRiverCard] = React.useState(newRiverCard())
 
   function randomNum(){
     return Math.floor((Math.random() * 8) + 1)
@@ -30,7 +30,7 @@ function App() {
     const houseCardArr = [houseCard]
     const newArray =[]
     newArray.push({value: houseCardArr[0].value})
-    console.table(newArray)
+    
 
     for( let i = 0; i < 3; i ++){
        let x = randomNum()
@@ -46,7 +46,7 @@ function App() {
       //If false then it pushes the value of x to the newArray array
 
       if(conflictValue === true){
-        console.log("Conflict Value is",conflictValue, "Value of x is", x)
+        // console.log("Conflict Value is",conflictValue, "Value of x is", x)
         if(i >= 0){
           i = i-1;
         }else{
@@ -56,16 +56,22 @@ function App() {
         newArray.push({value: x})
       } 
     }
-    console.table(newArray)
+    // console.log(newArray)
+    return newArray
   }
-  
-  
 
+  
+  const riverCardElements = riverCard.map((card) => (
+  <RiverCard {...card}/>
+  ))
+  
   return (
-    <div className="App">
-      <button className='test-button' onClick={newRiverCard}>Test Button</button>
+    <div className="container-fluid">
+      <button className='test-button' >Test Button</button>
       <HouseCard value = {houseCard.value}/>
-      <RiverCard />
+      <div className='row mt-5'>
+        {riverCardElements}
+      </div>      
     </div>
   );
 }

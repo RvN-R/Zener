@@ -1,10 +1,11 @@
 import React from "react"
 
-function RiverCard(){
+function RiverCard(props){
     return(
-        <div>
-            <h1> From River Card App</h1>
-        </div>
+    <div className="col-3 d-flex justify-content-center">
+        <img className="river-card" src={require(`./assets/frontcard-${props.value}.png`)}/>
+    </div>
+        
     );
 }
 
