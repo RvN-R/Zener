@@ -28,6 +28,7 @@ function App() {
     // Using a for loop to create a variable called X and allocatinig it a random number
 
     const houseCardArr = [houseCard]
+    // const randomSpliceIndex = Math.floor((Math.random() * 3) + 1)
     const newArray =[]
     newArray.push({value: houseCardArr[0].value})
     
@@ -39,14 +40,12 @@ function App() {
       // if they match it returns true
       const conflictValue = newArray.some(num => num.value === x)
       
-
       // BELOW IF STATEMENT IS THE ONE WE WANT
       //Below if statement checks to see if conflictValue is true
       //If true then it re-sets the value of i to reloop the above for loop from the point it was true
       //If false then it pushes the value of x to the newArray array
 
       if(conflictValue === true){
-        // console.log("Conflict Value is",conflictValue, "Value of x is", x)
         if(i >= 0){
           i = i-1;
         }else{
@@ -56,10 +55,22 @@ function App() {
         newArray.push({value: x})
       } 
     }
-    // console.log(newArray)
     return newArray
   }
 
+  //Found a useful function on Stackoverflow that will rearrange an array.
+  //Need to Incorporate this into newRiverCard function
+  function arrayMove(arr, old_index, new_index){
+    if (new_index >= arr.length){
+      var k = new_index - arr.length +1;
+      while(k--){
+        arr.push(undefined);
+      }
+    }
+    arr.splice(new_index, 0, arr.splice(old_index,1)[0]);
+    return arr;
+  }
+  
   
   const riverCardElements = riverCard.map((card) => (
   <RiverCard {...card}/>
@@ -67,7 +78,7 @@ function App() {
   
   return (
     <div className="container-fluid">
-      <button className='test-button' >Test Button</button>
+      <button className='test-button' onClick={arrayMove}>Test Button</button>
       <HouseCard value = {houseCard.value}/>
       <div className='row mt-5'>
         {riverCardElements}
