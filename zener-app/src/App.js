@@ -44,6 +44,7 @@ function App() {
       //Below if statement checks to see if conflictValue is true
       //If true then it re-sets the value of i to reloop the above for loop from the point it was true
       //If false then it pushes the value of x to the newArray array
+      //Then pass the newArray through the rearrangedNewArray function which changes the order of the River Cards
 
       if(conflictValue === true){
         if(i >= 0){
@@ -55,12 +56,20 @@ function App() {
         newArray.push({value: x})
       } 
     }
-    return newArray
+    
+    const randomNewIndex = Math.floor((Math.random() * 3) + 1)
+    
+    const rearrangedNewArray = arrayMove(newArray,0,randomNewIndex)
+    
+    return rearrangedNewArray
   }
 
   //Found a useful function on Stackoverflow that will rearrange an array.
   //Need to Incorporate this into newRiverCard function
   function arrayMove(arr, old_index, new_index){
+    // console.log("arr.length is", arr.length)
+    // console.log("old_index is", old_index)
+    // console.log("new_index is", new_index)
     if (new_index >= arr.length){
       var k = new_index - arr.length +1;
       while(k--){
@@ -70,6 +79,10 @@ function App() {
     arr.splice(new_index, 0, arr.splice(old_index,1)[0]);
     return arr;
   }
+
+  // console.log(arrayMove([{value: 1},{value: 2},{value: 3},{value: 4}],0,1));
+  // console.log(arrayMove([1,2,3],0,1)) 
+
   
   
   const riverCardElements = riverCard.map((card) => (
