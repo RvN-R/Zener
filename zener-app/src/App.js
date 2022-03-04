@@ -67,9 +67,6 @@ function App() {
   //Found a useful function on Stackoverflow that will rearrange an array.
   //Need to Incorporate this into newRiverCard function
   function arrayMove(arr, old_index, new_index){
-    // console.log("arr.length is", arr.length)
-    // console.log("old_index is", old_index)
-    // console.log("new_index is", new_index)
     if (new_index >= arr.length){
       var k = new_index - arr.length +1;
       while(k--){
@@ -80,13 +77,12 @@ function App() {
     return arr;
   }
 
-  // console.log(arrayMove([{value: 1},{value: 2},{value: 3},{value: 4}],0,1));
-  // console.log(arrayMove([1,2,3],0,1)) 
-
-  
-  
+  function checkMatch(value){
+    console.log(value)
+  }
+    
   const riverCardElements = riverCard.map((card) => (
-  <RiverCard {...card}/>
+  <RiverCard {...card} clickHandler={() => checkMatch(card.value)}/>
   ))
   
   return (
