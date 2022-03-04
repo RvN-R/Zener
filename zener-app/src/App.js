@@ -3,6 +3,7 @@ import React from "react"
 import HouseCard from './HouseCard';
 import RiverCard from './RiverCard';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {nanoid} from "nanoid"
 
 
 function App() {
@@ -15,7 +16,8 @@ function App() {
 
   function newHouseCard(){
     const newCard = {
-      value : randomNum()
+      value : randomNum(),
+      id: nanoid()
     }
     return newCard
   }
@@ -30,7 +32,7 @@ function App() {
     const houseCardArr = [houseCard]
     // const randomSpliceIndex = Math.floor((Math.random() * 3) + 1)
     const newArray =[]
-    newArray.push({value: houseCardArr[0].value})
+    newArray.push({value: houseCardArr[0].value, status: 0, id: nanoid()})
     
 
     for( let i = 0; i < 3; i ++){
@@ -53,7 +55,7 @@ function App() {
           i = 0;
         }
       }else{
-        newArray.push({value: x})
+        newArray.push({value: x, status: 0, id: nanoid()})
       } 
     }
     
@@ -77,12 +79,22 @@ function App() {
     return arr;
   }
 
-  function checkMatch(value){
-    console.log(value)
+  // Need to get the House Card value and crosscheck that against the value imported in checkMatch function
+  // if the value of the River Card matchs the value of the House Card and
+  // The id of passed to the function matches the card.id then flip status of that card to 2
+  //If they don't match it goes to 1
+  function checkMatch(value, id){
+    const houseCardArr = [houseCard]
+    setRiverCard(preRiverCard => preRiverCard.map(card => {
+      return houseCardArr[0].value === value & card.id === id?
+      {...card, status: 2}:
+      {...card, status: 1}
+    }))
   }
+  console.log(riverCard)
     
   const riverCardElements = riverCard.map((card) => (
-  <RiverCard {...card} clickHandler={() => checkMatch(card.value)}/>
+  <RiverCard key={card.id}{...card} clickHandler={() => checkMatch(card.value, card.id)}/>
   ))
   
   return (
