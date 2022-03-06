@@ -119,7 +119,7 @@ function App() {
 
   console.log("outside useEffect", houseCard.flipped)
   
-  // variable assigned value of houseCard.flipped converted to String changing for commit
+  // variable assigned value of houseCard.flipped converted to String
   const houseCardFlipppedStr = String(houseCard.flipped)
 
   return (
