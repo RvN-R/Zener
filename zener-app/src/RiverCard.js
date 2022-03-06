@@ -26,7 +26,7 @@ function RiverCard(props){
     function borderColorDecider(){
         if(status === 2){
             return greenBorder
-        }else if(status ===1){
+        }else if(status === 1){
             return redBorder
         }else{
             return blackBorder

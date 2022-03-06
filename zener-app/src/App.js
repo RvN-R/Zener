@@ -17,7 +17,8 @@ function App() {
   function newHouseCard(){
     const newCard = {
       value : randomNum(),
-      id: nanoid()
+      id: nanoid(),
+      flipped: false
     }
     return newCard
   }
@@ -32,7 +33,10 @@ function App() {
     const houseCardArr = [houseCard]
     // const randomSpliceIndex = Math.floor((Math.random() * 3) + 1)
     const newArray =[]
-    newArray.push({value: houseCardArr[0].value, status: 0, id: nanoid()})
+    newArray.push({
+      value: houseCardArr[0].value,
+      status: 0,
+      id: nanoid()})
     
 
     for( let i = 0; i < 3; i ++){
@@ -90,17 +94,39 @@ function App() {
       {...card, status: 2}:
       {...card, status: 1}
     }))
+
   }
-  console.log(riverCard)
-    
+
+
+
   const riverCardElements = riverCard.map((card) => (
   <RiverCard key={card.id}{...card} clickHandler={() => checkMatch(card.value, card.id)}/>
   ))
+
+
+  // This effect checks to see if any of the river card status's are 1
+  // If so it changes the house card flipped to true.
+  // ISSUE: on flips this to true inside useEffect and not outside this
+  // I think this is because I am not resetting the setHouseCard flipped value 
+
+  React.useEffect(() => {
+    const riverCardStatus = riverCard.some(card => card.status === 1)
+    if(riverCardStatus === true){
+      houseCard.flipped = true
+    }
+    console.log("inside useEffect",houseCard.flipped)
+  },[riverCard])
+
+  console.log("outside useEffect", houseCard.flipped)
   
+  // variable assigned value of houseCard.flipped converted to String
+  const houseCardFlipppedStr = String(houseCard.flipped)
+
   return (
     <div className="container-fluid">
       <button className='test-button' onClick={arrayMove}>Test Button</button>
       <HouseCard value = {houseCard.value}/>
+      <p>{"houseCard flipped is " + houseCardFlipppedStr}</p>
       <div className='row mt-5'>
         {riverCardElements}
       </div>      
