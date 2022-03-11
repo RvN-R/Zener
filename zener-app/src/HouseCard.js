@@ -14,10 +14,7 @@ function HouseCard(props){
     return(
         <div className="row">
             <div className="col-12 d-flex justify-content-center">
-                <img className="house-card" src={require(`./assets/frontcard-${props.value}.png`)}/>
-            </div>
-            <div className="col-12 d-flex justify-content-center">
-                {props.flipped}
+                <img className="house-card" src={houseCardFlip()}/>
             </div>
         </div>
     );

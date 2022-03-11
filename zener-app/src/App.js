@@ -97,36 +97,27 @@ function App() {
 
   }
 
-
-
   const riverCardElements = riverCard.map((card) => (
   <RiverCard key={card.id}{...card} clickHandler={() => checkMatch(card.value, card.id)}/>
   ))
 
-
-  // This effect checks to see if any of the river card status's are 1
+  // This effect checks to see if any of the river card status's aren't 0
   // If so it changes the house card flipped to true.
-  // ISSUE: on flips this to true inside useEffect and not outside this
-  // I think this is because I am not resetting the setHouseCard flipped value 
 
   React.useEffect(() => {
     const riverCardStatus = riverCard.some(card => card.status === 1)
     if(riverCardStatus === true){
-      houseCard.flipped = true
+      setHouseCard(preHouseCard => ({
+        ...preHouseCard, flipped: !preHouseCard.flipped
+      }))
     }
-    console.log("inside useEffect",houseCard.flipped)
   },[riverCard])
-
-  console.log("outside useEffect", houseCard.flipped)
   
-  // variable assigned value of houseCard.flipped converted to String adding to make a new commit
-  const houseCardFlipppedStr = String(houseCard.flipped)
-
+  
   return (
     <div className="container-fluid">
       <button className='test-button' onClick={arrayMove}>Test Button</button>
-      <HouseCard value = {houseCard.value}/>
-      <p>{"houseCard flipped is " + houseCardFlipppedStr}</p>
+      <HouseCard value = {houseCard.value} flipped ={houseCard.flipped}/>
       <div className='row mt-5'>
         {riverCardElements}
       </div>      
