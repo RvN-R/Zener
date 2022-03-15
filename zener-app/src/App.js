@@ -102,17 +102,24 @@ function App() {
   ))
 
   // This effect checks to see if any of the river card status's aren't 0
-  // If so it changes the house card flipped to true.
+  // If so it returns houseCardReveal function.
 
   React.useEffect(() => {
     const riverCardStatus = riverCard.some(card => card.status === 1)
     if(riverCardStatus === true){
-      setHouseCard(preHouseCard => ({
-        ...preHouseCard, flipped: !preHouseCard.flipped
-      }))
+      return setTimeout(houseCardReveal, 500)
     }
   },[riverCard])
+
+
+  // houseCardReveal function flips the houseCard flipped value
+  // from the current value to the opposite of that value i.e false to true
   
+  function houseCardReveal(){
+    return setHouseCard(preHouseCard => ({
+      ...preHouseCard, flipped: !preHouseCard.flipped
+    }))
+  }
   
   return (
     <div className="container-fluid">
