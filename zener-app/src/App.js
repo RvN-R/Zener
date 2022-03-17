@@ -9,6 +9,7 @@ import {nanoid} from "nanoid"
 function App() {
   const [houseCard, setHouseCard] = React.useState(newHouseCard())
   const [riverCard, setRiverCard] = React.useState(newRiverCard())
+  const [zener, setZener] = React.useState(false)
 
   function randomNum(){
     return Math.floor((Math.random() * 8) + 1)
@@ -25,13 +26,13 @@ function App() {
 
   function newRiverCard(){
 
-    // Below creates a variable called houseCardArr allocation the state of houseCard to it
+    // Below creates a variable called houseCardArr that has the state of houseCard allocated to it
     // Then an empty array called newArray
     // Push the value of the houseCard to newArray so the one of the River cards will be the same as the house card.
     // Using a for loop to create a variable called X and allocatinig it a random number
 
     const houseCardArr = [houseCard]
-    // const randomSpliceIndex = Math.floor((Math.random() * 3) + 1)
+    
     const newArray =[]
     newArray.push({
       value: houseCardArr[0].value,
@@ -41,6 +42,7 @@ function App() {
 
     for( let i = 0; i < 3; i ++){
        let x = randomNum()
+
        
       // conflictValue checks whether newArray value property are the same as x
       // if they match it returns true
@@ -67,6 +69,8 @@ function App() {
     
     const rearrangedNewArray = arrayMove(newArray,0,randomNewIndex)
     
+    console.table(rearrangedNewArray)
+
     return rearrangedNewArray
   }
 
@@ -97,9 +101,10 @@ function App() {
 
   }
 
-  const riverCardElements = riverCard.map((card) => (
-  <RiverCard key={card.id}{...card} clickHandler={() => checkMatch(card.value, card.id)}/>
-  ))
+  console.table(houseCard)
+  console.table(riverCard)
+
+  
 
   // This effect checks to see if any of the river card status's aren't 0
   // If so it returns houseCardReveal function.
@@ -107,10 +112,9 @@ function App() {
   React.useEffect(() => {
     const riverCardStatus = riverCard.some(card => card.status === 1)
     if(riverCardStatus === true){
-      return setTimeout(houseCardReveal, 500)
+      setTimeout(houseCardReveal, 500) && setZener(true)
     }
   },[riverCard])
-
 
   // houseCardReveal function flips the houseCard flipped value
   // from the current value to the opposite of that value i.e false to true
@@ -120,11 +124,33 @@ function App() {
       ...preHouseCard, flipped: !preHouseCard.flipped
     }))
   }
+
+  // zenerRefresh function checks to see if Zener is true 
+  // if true its supposed to refresh the state of setHouseCard, setRiverCard and setZener
+  // However its not doing this properly
+
+  function zenerRefresh(){
+    if (zener === true){
+      setHouseCard(newHouseCard())
+      setRiverCard(newRiverCard())
+      setZener(false)
+    }
+  }
+
+
+  const riverCardElements = riverCard.map((card) => (
+    <RiverCard key={card.id}{...card} clickHandler={() => checkMatch(card.value, card.id)}/>
+    ))
   
   return (
     <div className="container-fluid">
-      <button className='test-button' onClick={arrayMove}>Test Button</button>
+      {/* <button className='test-button' onClick={arrayMove}>Test Button</button> */}
       <HouseCard value = {houseCard.value} flipped ={houseCard.flipped}/>
+      <div className='row'>
+        <div className="col-12 d-flex justify-content-center mt-2">
+          {zener && <button className="go-again-btn" onClick={zenerRefresh}>Go Again!</button>}
+        </div>
+      </div>
       <div className='row mt-5'>
         {riverCardElements}
       </div>      
