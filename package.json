@@ -10,5 +10,8 @@
   },
   "devDependencies": {
     "gh-pages": "^3.2.3"
+  },
+  "dependencies": {
+    "react-scripts": "^2.1.3"
   }
 }
