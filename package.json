@@ -3,11 +3,11 @@
     "gh-pages": "^3.2.3"
   },
 
-  "homepage": "https://RvN-R.github.io/zener-app",
+  "homepage": "https://RvN-R.github.io/Zener",
 
   "scripts": {
-    "deploy": "gh-pages -d build",
     "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
