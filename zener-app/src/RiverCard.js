@@ -35,7 +35,7 @@ function RiverCard(props){
     
 
     return(
-    <div className="col-3 d-flex justify-content-center">
+    <div className="col-lg-3 col-md-3 col-sm-3 d-flex justify-content-center">
         <img 
         className="river-card" 
         src={require(`./assets/frontcard-${props.value}.png`)} onClick={props.clickHandler}

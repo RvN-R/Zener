@@ -13,7 +13,7 @@ function HouseCard(props){
 
     return(
         <div className="row">
-            <div className="col-12 d-flex justify-content-center mt-3">
+            <div className="main-title col-12 d-flex justify-content-center mt-3">
                 <h1>Zener</h1>
             </div>
             <div className="col-12 d-flex justify-content-center mt-3">
