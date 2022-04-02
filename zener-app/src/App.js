@@ -153,6 +153,9 @@ function App() {
       </div>
       <div className='row mt-5'>
         {riverCardElements}
+        <div className='col-12 d-flex justify-content-center mt-4'>
+          <h2>Choose one of the above cards that matches the house card above!</h2>
+        </div>
       </div>      
     </div>
   );

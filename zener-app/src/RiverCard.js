@@ -39,11 +39,9 @@ function RiverCard(props){
         <img 
         className="river-card" 
         src={require(`./assets/frontcard-${props.value}.png`)} onClick={props.clickHandler}
-        // style={props.status ===true? greenBorder : redBorder}
         style={borderColorDecider()}
         />
     </div>
-        
     );
 }
 
