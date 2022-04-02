@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Zener/static/css/main.2f0cbd2d.css",
-    "main.js": "/Zener/static/js/main.8117f3a5.js",
+    "main.css": "/Zener/static/css/main.4309e046.css",
+    "main.js": "/Zener/static/js/main.017e717d.js",
     "static/js/787.f20a77c9.chunk.js": "/Zener/static/js/787.f20a77c9.chunk.js",
     "static/media/backofcard-1.png": "/Zener/static/media/backofcard-1.bab982b3420f44ae00af.png",
     "static/media/backofcard-2.png": "/Zener/static/media/backofcard-2.bab982b3420f44ae00af.png",
@@ -19,12 +19,12 @@
     "static/media/frontcard-8.png": "/Zener/static/media/frontcard-8.dca1c7cbc70788e1041e.png",
     "static/media/frontcard-4.png": "/Zener/static/media/frontcard-4.d151db3e6fbaeedbe035.png",
     "index.html": "/Zener/index.html",
-    "main.2f0cbd2d.css.map": "/Zener/static/css/main.2f0cbd2d.css.map",
-    "main.8117f3a5.js.map": "/Zener/static/js/main.8117f3a5.js.map",
+    "main.4309e046.css.map": "/Zener/static/css/main.4309e046.css.map",
+    "main.017e717d.js.map": "/Zener/static/js/main.017e717d.js.map",
     "787.f20a77c9.chunk.js.map": "/Zener/static/js/787.f20a77c9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.2f0cbd2d.css",
-    "static/js/main.8117f3a5.js"
+    "static/css/main.4309e046.css",
+    "static/js/main.017e717d.js"
   ]
 }
