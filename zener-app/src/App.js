@@ -69,10 +69,12 @@ function App() {
     
     const rearrangedNewArray = arrayMove(newArray,0,randomNewIndex)
     
-    console.table(rearrangedNewArray)
 
     return rearrangedNewArray
   }
+
+  console.log("House Card",houseCard)
+  console.log("River Card",riverCard)
 
   //Found a useful function on Stackoverflow that will rearrange an array.
   //Need to Incorporate this into newRiverCard function
@@ -101,10 +103,6 @@ function App() {
 
   }
 
-  console.table(houseCard)
-  console.table(riverCard)
-
-  
 
   // This effect checks to see if any of the river card status's aren't 0
   // If so it returns houseCardReveal function.
